@@ -26,7 +26,6 @@ elsif(my_hand == 0 && rival_hand == 1)||(my_hand == 1 && rival_hand == 2)||(my_h
   puts "あなた：#{jankens[my_hand]},相手：#{jankens[rival_hand]}"
   puts "--------------------------"
   puts "あなたの勝ちです。あっち向いて..."
-  acchimuite_hoi
   return false
 else
   puts "ホイ！"
@@ -34,7 +33,6 @@ else
   puts "あなた：#{jankens[my_hand]},相手：#{jankens[rival_hand]}"
   puts "--------------------------"
   puts "あなたの負けです。あっち向いて..."
-  acchimuite_hoi2
   return false
 end
 end # def jankenのend
@@ -61,7 +59,7 @@ else
   puts "あなた；#{acchimuite_hoies[my_finger]},相手：#{acchimuite_hoies[rival_face]}"
   puts "--------------------------"
   puts "セーフ。じゃんけん..."
-  janken
+  return true
 end
 end # accimuite_hoinのend
 
@@ -87,14 +85,31 @@ else
   puts "あなた；#{acchimuite_hoies2[my_face]},相手：#{acchimuite_hoies2[rival_finger]}"
   puts "--------------------------"
   puts "セーフ。じゃんけん..."
-  janken
+  return true
 end
-end # accimuite_hoinのend
+end # accimuite_hoi2のend
 
 
 next_game = true
 
 while next_game
-  next_game = janken
+  if next_game = janken
+    return true
+  else
+    break
+  end
+    
+  if next_game = acchimuite_hoi
+    return true
+  else
+    break
+  end
+  
+  if next_game = acchimuite_hoi2
+    return true
+  else
+    break
+  end
 end
+
 
