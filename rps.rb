@@ -1,6 +1,7 @@
 # じゃんけんスタート
 puts "じゃんけん..."
 
+
 # じゃんけんの処理
 def janken
 puts "0（グー）1（チョキ）2（パー）3（戦わない）"    # どれ（グーチョキパー、やめる）を出すか選択
@@ -93,23 +94,11 @@ end # accimuite_hoi2のend
 next_game = true
 
 while next_game
-  if next_game = janken
-    return true
-  else
-    break
-  end
-    
-  if next_game = acchimuite_hoi
-    return true
-  else
-    break
-  end
-  
-  if next_game = acchimuite_hoi2
-    return true
-  else
-    break
+  if my_hand == rival_hand      
+    next_game = janken          # jankenメソッドを呼び、trueかfalseをnext_gameに格納する。trueならwhileに戻って繰り返し処理する
+  elsif (my_hand == 0 && rival_hand == 1)||(my_hand == 1 && rival_hand == 2)||(my_hand == 2 && rival_hand == 0)  #自分の勝ち。next_game = acchimuite_hoiの処理を行う
+    next_game = acchimuite_hoi  #acchimuite_hoiメソッドを呼び、trueかfalseをnext_gameに格納。trueならwhileに戻って繰り返し処理する
+  else                          # 自分の負け。next_game = acchimuite_hoi2 の処理を行う
+    next_game = acchimuite_hoi2 #acchimuite_hoi2メソッドを呼び、trueかfalseをnext_gameに格納。trueならwhileに戻って繰り返し処理する
   end
 end
-
-
