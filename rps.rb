@@ -21,84 +21,69 @@ elsif my_hand ==3
 elsif my_hand > 3
   puts "正しい数値を入力してください"
   return true
-elsif(my_hand == 0 && rival_hand == 1)||(my_hand == 1 && rival_hand == 2)||(my_hand == 2 && rival_hand == 0)
+elsif(my_hand == 0 && rival_hand == 1) || (my_hand == 1 && rival_hand == 2) || (my_hand == 2 && rival_hand == 0)
   puts "ホイ！"
   puts "--------------------------"
   puts "あなた：#{jankens[my_hand]},相手：#{jankens[rival_hand]}"
   puts "--------------------------"
   puts "あなたの勝ちです。あっち向いて..."
-  return false
+  @result_jankenA = "win"
+  return acchimuite_hoi
 else
   puts "ホイ！"
   puts "--------------------------"
   puts "あなた：#{jankens[my_hand]},相手：#{jankens[rival_hand]}"
   puts "--------------------------"
   puts "あなたの負けです。あっち向いて..."
-  return false
+  @result_jankenB = "lose"
+  return acchimuite_hoi
 end
 end # def jankenのend
 
 
-# あっち向いてホイの処理(自分が勝った場合)
+# あっち向いてホイの処理
 def acchimuite_hoi
   puts "0（上）1（下）2（左）3（右）"
   my_finger = gets.to_i
-  rival_face = rand(4)
+  rival_finger = rand(4)
   
-  acchimuite_hoies = ["上","下","左","右"]
+  directions = ["上","下","左","右"]
   
-if my_finger == rival_face
+# あなたの勝ちの場合
+if @result_jankenA && my_finger == rival_finger
   puts "ホイ！"
   puts "--------------------------"
-  puts "あなた；#{acchimuite_hoies[my_finger]},相手：#{acchimuite_hoies[rival_face]}"
+  puts "あなた；#{directions[my_finger]},相手：#{directions[rival_finger]}"
   puts "--------------------------"
   puts "あなたの勝ちです。"
   return false
-else
+
+# あなたの負けの場合
+elsif @result_jankenB && my_finger == rival_finger
   puts "ホイ！"
   puts "--------------------------"
-  puts "あなた；#{acchimuite_hoies[my_finger]},相手：#{acchimuite_hoies[rival_face]}"
-  puts "--------------------------"
-  puts "セーフ。じゃんけん..."
-  return true
-end
-end # accimuite_hoinのend
-
-
-# あっち向いてホイの処理（自分が負けた場合）
-def acchimuite_hoi2
-  puts "0（上）1（下）2（左）3（右）"
-  my_face = gets.to_i
-  rival_finger = rand(4)
-  
-  acchimuite_hoies2 = ["上","下","左","右"]
-  
-if my_face == rival_finger
-  puts "ホイ！"
-  puts "--------------------------"
-  puts "あなた；#{acchimuite_hoies2[my_face]},相手：#{acchimuite_hoies2[rival_finger]}"
+  puts "あなた；#{directions[my_finger]},相手：#{directions[rival_finger]}"
   puts "--------------------------"
   puts "あなたの負けです。"
   return false
+
+# あいこの場合
 else
   puts "ホイ！"
   puts "--------------------------"
-  puts "あなた；#{acchimuite_hoies2[my_face]},相手：#{acchimuite_hoies2[rival_finger]}"
+  puts "あなた；#{directions[my_finger]},相手：#{directions[rival_finger]}"
   puts "--------------------------"
   puts "セーフ。じゃんけん..."
-  return true
+  return janken
 end
-end # accimuite_hoi2のend
+end # accimuite_hoiのend
+
+
 
 
 next_game = true
 
 while next_game
-  if my_hand == rival_hand      
-    next_game = janken          # jankenメソッドを呼び、trueかfalseをnext_gameに格納する。trueならwhileに戻って繰り返し処理する
-  elsif (my_hand == 0 && rival_hand == 1)||(my_hand == 1 && rival_hand == 2)||(my_hand == 2 && rival_hand == 0)  #自分の勝ち。next_game = acchimuite_hoiの処理を行う
-    next_game = acchimuite_hoi  #acchimuite_hoiメソッドを呼び、trueかfalseをnext_gameに格納。trueならwhileに戻って繰り返し処理する
-  else                          # 自分の負け。next_game = acchimuite_hoi2 の処理を行う
-    next_game = acchimuite_hoi2 #acchimuite_hoi2メソッドを呼び、trueかfalseをnext_gameに格納。trueならwhileに戻って繰り返し処理する
-  end
+  next_game = janken
 end
+
