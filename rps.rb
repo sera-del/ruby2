@@ -1,6 +1,8 @@
+# グローバル変数のファイルの読み込み
+require_relative "rps2.rb"
+
 # じゃんけんスタート
 puts "じゃんけん..."
-
 
 # じゃんけんの処理
 def janken
@@ -27,7 +29,7 @@ elsif(my_hand == 0 && rival_hand == 1) || (my_hand == 1 && rival_hand == 2) || (
   puts "あなた：#{jankens[my_hand]},相手：#{jankens[rival_hand]}"
   puts "--------------------------"
   puts "あなたの勝ちです。あっち向いて..."
-  @result_jankenA = "win"
+  $result_janken = "win"
   return acchimuite_hoi
 else
   puts "ホイ！"
@@ -35,7 +37,7 @@ else
   puts "あなた：#{jankens[my_hand]},相手：#{jankens[rival_hand]}"
   puts "--------------------------"
   puts "あなたの負けです。あっち向いて..."
-  @result_jankenB = "lose"
+  $result_janken = "lose"
   return acchimuite_hoi
 end
 end # def jankenのend
@@ -50,7 +52,7 @@ def acchimuite_hoi
   directions = ["上","下","左","右"]
   
 # あなたの勝ちの場合
-if @result_jankenA && my_finger == rival_finger
+if $result_janken == "win" && my_finger == rival_finger
   puts "ホイ！"
   puts "--------------------------"
   puts "あなた；#{directions[my_finger]},相手：#{directions[rival_finger]}"
@@ -59,7 +61,7 @@ if @result_jankenA && my_finger == rival_finger
   return false
 
 # あなたの負けの場合
-elsif @result_jankenB && my_finger == rival_finger
+elsif $result_janken == "lose" && my_finger == rival_finger
   puts "ホイ！"
   puts "--------------------------"
   puts "あなた；#{directions[my_finger]},相手：#{directions[rival_finger]}"
